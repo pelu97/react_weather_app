@@ -1,0 +1,55 @@
+.location{
+    font-weight: 700;
+    font-size: 43px;
+    letter-spacing: 0.14em;
+}
+
+.description{
+    font-size: 24px;
+}
+
+.temp_container{
+    display: flex;
+    width: 100%;
+    /* height: 20%; */
+    justify-content: center;
+}
+
+.temp {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 78px;
+    text-align: center;
+    letter-spacing: 0.05em;
+    height: 100%;
+    /* margin: auto; */
+    margin: auto 0px;
+}
+
+
+.temp_icon {
+    /* width: 100%; */
+    height: 100%;
+    /* margin: auto; */
+}
+
+.temp_max_min {
+    display: flex;
+    width: 60%;
+    margin: auto;
+}
+
+.temp_max, .temp_min{
+    display: block;
+    margin: auto;
+    font-size: 18px;
+}
+
+.temp_max span, .temp_min span{
+    font-weight: 700;
+}
+
+/* .temp_max h3, .temp_min h3{
+    display: inline;
+} */

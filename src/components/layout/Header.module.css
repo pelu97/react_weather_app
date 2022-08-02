@@ -1,0 +1,50 @@
+
+.header{
+    display: flex;
+    align-items: center;
+    /* margin-top: 5%; */
+    height: 15vh;
+    /* padding-top: 2%; */
+    width: 100vw;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+    z-index: 0;
+    justify-content: center;
+}
+
+.unit_button{
+    position: relative;
+    /* left: 75%; */
+    /* margin-left: 30%; */
+    height: 40px;
+    /* margin: 0% 20%; */
+}
+
+.spacer{
+    width: 75vw;
+}
+
+.back_button{
+    position: relative;
+    /* left: 15%; */
+    /* margin: 0% 20%; */
+}
+
+.back_button img{
+    width: 50px;
+    height: auto;
+    /* left: 15%; */
+}
+
+/*
+.back_button{
+    position: relative;
+    /* margin-top: 5%; */
+    /* right: 35%; */
+    /* width: 10%; */
+    /* top: 55%;
+    left: 15%;
+    height: 40px;
+}
+*/

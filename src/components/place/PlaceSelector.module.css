@@ -1,0 +1,66 @@
+.main{
+    /* display: flex; */
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.list{
+    /* display: block; */
+    width: 100%;
+
+}
+
+.list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    /* border-radius: 0px 0px 10px 10px; */
+    /* box-shadow: 0px 4px 4px rgba(106, 162, 209, 0.8); */
+    /* display: table; */
+
+}
+
+.list ul li:last-child{
+    border-radius: 0px 0px 10px 10px;
+    box-shadow: 0px 4px 4px rgba(106, 162, 209, 0.8);
+}
+
+/* .list ul li:before {
+    content: '';
+    display: inline;
+    height: 100%;
+    vertical-align: middle;
+} */
+
+
+.inputText {
+    background: rgba(255, 255, 255, 0.77);
+    width: 100%;
+    height: 50px;
+    font-family: "Montserrat";
+    font-size: 21px;
+    color: rgba(106, 162, 209, 1);
+    line-height: 24px;
+    border-color: rgba(0, 0, 0, 0);
+    border: 0;
+    padding: 0px 15px 0px 15px;
+
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.inputText_empty{
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0px 4px 4px rgba(106, 162, 209, 0.8);
+}
+
+.inputText_full{
+    border-radius: 10px 10px 0px 0px;
+    box-shadow: 0px 4px 4px rgba(106, 162, 209, 0.8);
+}
+
+.inputText::placeholder{
+    color: rgba(106, 162, 209, 1);
+}

@@ -1,0 +1,22 @@
+.item{
+    min-height: 50px;
+    height: auto;
+    /* margin-top: auto;
+    margin-bottom: auto; */
+    /* padding: 2px; */
+    font-size: 20px;
+    text-align: left;
+    /* display: table-cell; */
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.item span{
+    vertical-align:middle;
+    height: 2em;
+    line-height: 2em;
+}
+
+.item:hover{
+    color: #D2B3C1;
+}

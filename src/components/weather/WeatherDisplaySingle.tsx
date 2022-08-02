@@ -7,10 +7,13 @@ import UnitContext from "../../store/UnitContext";
 
 import { WEATHER_API_KEY } from "../../api_keys/api_keys";
 
+import LoadingSpinner from "../ui/LoadingSpinner";
+
 import classes from "./WeatherDisplaySingle.module.css";
 
 // https://api.openweathermap.org/data/2.5/weather?lat=-15.793889&lon=-47.882778&appid=WEATHER_API_KEY
 
+// Formato dos dados retornados pela Current Weather API do Open Weather
 interface WeatherSingleData{
     coord: {
         lon: number,
@@ -56,6 +59,8 @@ interface WeatherSingleData{
     cod: number
 }
 
+
+// Busca usando a Current Weather API e exibe o clima atual nas coordenadas selecionadas
 function WeatherDisplaySingle(){
     const {isLoading, error, sendRequest} = useHttp();
     const [weatherData, setWeatherData] = useState<WeatherSingleData>();
@@ -86,17 +91,9 @@ function WeatherDisplaySingle(){
     }, [sendRequest, setData, unitContext.isCelsius, lat, lon]);
 
 
-
-    // function setData(data: tempType[]){
-    //     console.log(data);
-    // }
-
-
-
-
     return(
         <div>
-            {isLoading && <p>Loading...</p>}
+            {isLoading && <LoadingSpinner/>}
             {!isLoading && error && <p>An error ocurred! ({error})</p>}
             {!isLoading && !error && weatherData &&
                 <div>

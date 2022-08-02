@@ -5,6 +5,8 @@ import WeatherDisplayMulti from "../components/weather/WeatherDisplayMulti";
 
 import classes from "./Weather.module.css";
 
+
+// Página com os componentes de exibição do clima
 function Weather(){
     // const [searchParams, setSearchParams] = useSearchParams();
     const params = useParams();

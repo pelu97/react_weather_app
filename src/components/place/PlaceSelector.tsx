@@ -11,13 +11,20 @@ import LoadingSpinner from "../ui/LoadingSpinner";
 
 import classes from "./PlaceSelector.module.css";
 
-function PlaceSelector(){
 
+// Buscador e seletor de lugares (limitados para cidades)
+// Utiliza o hook usePlacesService do pacote react-google-autocomplete para buscar os dados da Places API do Google Maps,
+//   com um delay para evitar muitas requisições e diminuir custos. O hook retorna os dados em um vetor, que é utilizado para exibir os locais para o usuário
+// A busca é influenciada para uma área que contém todo território brasileiro, mas locais externos a essa área também aparecem na busca,
+//   apenas com menor prioridade.
+
+function PlaceSelector(){
     const navigate = useNavigate();
 
+    // Hook do react-google-autocomplete
     const {placesService, placePredictions, getPlacePredictions, isPlacePredictionsLoading, autocompleteSessionToken} = usePlacesService({
         apiKey: MAPS_API_KEY,
-        debounce: 300,
+        debounce: 300, //Tempo em milisegundos para esperar antes de enviar uma requisição - evita requisições excessivas
         options: {
             // componentRestrictions: { country: "br" }
             bounds: {
@@ -26,10 +33,10 @@ function PlaceSelector(){
                 east: -34.791667,
                 west: -73.992222
 
-            },
+            }, //Influencia os resultados para uma área que contém todo o território brasileiro.
             types: [
                 "(cities)"
-            ]
+            ] //Limita os resultados para apenas cidades
         },
         language: "pt-BR"
     });
@@ -44,7 +51,7 @@ function PlaceSelector(){
         console.log(placePredictions);
     }, [placePredictions]);
 
-
+    // Executa quando um lugar é selecionado na lista. Busca as coordenadas desse lugar
     function selectPlaceHandler(place: {description: string, placeId: string}){
         console.log(place.description);
 
@@ -53,8 +60,7 @@ function PlaceSelector(){
             sessionToken: autocompleteSessionToken,
             fields: ["geometry"]
         }, (placeDetails: any) => {
-            console.log(placeDetails);
-
+            // console.log(placeDetails);
             // console.log(placeDetails.geometry.location);
             // console.log(placeDetails.geometry.location.lat());
             // console.log(placeDetails.geometry.location.lng());
@@ -66,6 +72,7 @@ function PlaceSelector(){
         });
     }
 
+    // Abre a página do tempo, no modo de tempo atual, passando as coordenadas do local pela url
     function openWeatherPage(coords: {lat: number, lon: number}){
         console.log(coords);
 

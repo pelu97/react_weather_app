@@ -2,6 +2,9 @@ import PlaceSelector from "../components/place/PlaceSelector";
 
 import classes from "./Places.module.css";
 
+
+// Página com a busca de cidades
+
 function Places(){
     return(
         <div className={`centered_noflex ${classes.placesPage}`}>

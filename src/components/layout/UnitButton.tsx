@@ -4,6 +4,8 @@ import UnitContext from "../../store/UnitContext";
 
 import classes from "./UnitButton.module.css";
 
+
+// Botão de seleção de temperatura
 function UnitButton(){
     // const [isCelsius, setIsCelsius] = useState(true);
     const unitContext = useContext(UnitContext);

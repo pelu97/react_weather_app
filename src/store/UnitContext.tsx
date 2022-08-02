@@ -1,6 +1,10 @@
 import { createContext, ReactNode, useState, useEffect } from "react";
 
 
+// Context usado para armazenar a unidade de temperatura selecionada;
+// Facilita o uso e a alteração dessa informação, sem precisar passar como parâmetro para todo componente que precise dela
+
+
 
 interface UnitContextLayout{
     isCelsius: boolean,
@@ -20,7 +24,7 @@ interface UnitContextProviderProps{
 export function UnitContextProvider(props: UnitContextProviderProps){
     const [isCelsius, setIsCelsius] = useState(true);
 
-    // useEffect just for loggin the unit stat after changing it
+    // useEffect just for logging the unit stat after changing it
     useEffect(() => {
         console.log(isCelsius);
     }, [isCelsius]);

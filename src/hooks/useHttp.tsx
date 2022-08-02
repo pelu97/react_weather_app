@@ -1,6 +1,14 @@
 import { useState, useCallback } from "react";
 
 
+// Hook customizado para realizar as requisições para a API do OpenWeather
+// A Places API do Google Maps é utilizada por meio do pacote react-google-autcomplete e não utiliza esse hook
+
+// Retorno:
+// -- isLoading: boolean: Se está esperando pela resposta de uma requisição
+// -- error: string | null: Uma mensagem de erro, caso tenha ocorrido algum
+// -- sendRequest: async function<DataType>(request: RequestType, setData: (data: DataType) => void): A função que deve ser executada para enviar uma requisição 
+
 interface RequestType{
     url: string,
     method?: string,

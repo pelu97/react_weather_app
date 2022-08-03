@@ -7,6 +7,7 @@ import Places from "./pages/Places";
 import Weather from "./pages/Weather";
 
 import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
 
 import skyImage from "./assets/sky.png";
 
@@ -26,6 +27,7 @@ function App() {
                         <Route path="/weather/:mode" element={<Weather/>}/>
                         <Route path="*" element={<Navigate replace to="/"/>} />
                     </Routes>
+                    <Footer/>
                 </div>
         </UnitContextProvider>
     );

@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { MAPS_API_KEY } from "../../api_keys/api_keys";
+import UnitContext from "../../store/UnitContext";
 
 // import AutoComplete from "react-google-autocomplete";
 import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
@@ -20,6 +21,23 @@ import classes from "./PlaceSelector.module.css";
 
 function PlaceSelector(){
     const navigate = useNavigate();
+    const context = useContext(UnitContext);
+
+    let language = "pt-BR";
+    let placeholderText = "Digite o nome da cidade";
+
+    if(context.languageSelected === "ptbr"){
+        language = "pt-BR";
+        placeholderText = "Digite o nome da cidade";
+    }
+    else if(context.languageSelected === "en"){
+        language = "en";
+        placeholderText = "Input the city's name";
+    }
+    else if(context.languageSelected === "esp"){
+        language = "es";
+        placeholderText = "Introduzca el nombre de la ciudad";
+    }
 
     // Hook do react-google-autocomplete
     const {placesService, placePredictions, getPlacePredictions, isPlacePredictionsLoading, autocompleteSessionToken} = usePlacesService({
@@ -38,7 +56,7 @@ function PlaceSelector(){
                 "(cities)"
             ] //Limita os resultados para apenas cidades
         },
-        language: "pt-BR"
+        language: language
     });
 
     let placesExist = false;
@@ -86,7 +104,7 @@ function PlaceSelector(){
         <div className={classes.main}>
             <input className={`
                 ${classes.inputText} ${placesExist ? classes.inputText_full : classes.inputText_empty}
-                `} placeholder="Digite o nome da cidade" onChange={(event) => {
+                `} placeholder={placeholderText} onChange={(event) => {
                 getPlacePredictions({input: event.target.value});
             }}/>
             {

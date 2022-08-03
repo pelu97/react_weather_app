@@ -4,11 +4,12 @@
 }
 
 .placesPage{
-    height: 85vh;
+    height: 65vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -10%;
+    /* margin-top: -10%; */
+    margin-bottom: 11vh;
 }
 
 .center{
@@ -20,4 +21,31 @@
     right: 50%; */
     display: block;
     width: 70vw;
+}
+
+/* telas menores */
+@media only screen and (max-width: 1000px){
+    .center{
+        width: 85vw;
+    }
+
+    .placesPage h1{
+        font-size: 3.5vw;
+    }
+}
+
+@media only screen and (max-width: 750px){
+    .center{
+        width: 100vw;
+    }
+
+    .placesPage h1{
+        font-size: 4.5vw;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    .placesPage h1{
+        font-size: 30px;
+    }
 }

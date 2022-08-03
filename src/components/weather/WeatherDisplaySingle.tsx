@@ -64,37 +64,54 @@ interface WeatherSingleData{
 function WeatherDisplaySingle(){
     const {isLoading, error, sendRequest} = useHttp();
     const [weatherData, setWeatherData] = useState<WeatherSingleData>();
-    const unitContext = useContext(UnitContext);
+    const context = useContext(UnitContext);
     const [searchParams] = useSearchParams();
 
     const lat = searchParams.get("lat");
     const lon = searchParams.get("lon");
 
-    // let weather: WeatherSingleData;
-    // weather = DUMMY_WEATHER_SINGLE;
+    let language = "pt_br";
+    let iconAlt = "Ícone referente ao clima atual";
+    let errorMessage = "Ocorreu um erro ao buscar os dados do clima! Espere um pouco e tente novamente.";
+
+    if(context.languageSelected === "ptbr"){
+        language = "pt_br";
+        iconAlt = "Ícone referente ao clima atual";
+        errorMessage = "Ocorreu um erro ao buscar os dados do clima! Espere um pouco e tente novamente.";
+    }
+    else if(context.languageSelected === "en"){
+        language = "en";
+        iconAlt = "Current weather's icon";
+        errorMessage = "An error ocurred when fetching weather data! Please wait a few minutes and try again.";
+    }
+    else if(context.languageSelected === "esp"){
+        language = "sp";
+        iconAlt = "Icono del tiempo actual";
+        errorMessage = "¡Se produjo un error al obtener los datos meteorológicos! Espere un momento y vuelva a intentarlo.";
+    }
 
     const setData = useCallback((data: WeatherSingleData) => {
-        console.log(data);
+        // console.log(data);
         // weather = data;
         setWeatherData(data);
     }, []);
 
     useEffect(() => {
         sendRequest<WeatherSingleData>({
-            url: unitContext.isCelsius
-            ? `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=pt_br&appid=${WEATHER_API_KEY}`
-            : `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&lang=pt_br&appid=${WEATHER_API_KEY}`
+            url: context.isCelsius
+            ? `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=${language}&appid=${WEATHER_API_KEY}`
+            : `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&lang=${language}&appid=${WEATHER_API_KEY}`
         }, setData);
-        console.log("Send request");
+        // console.log("Send request");
         // console.log(searchParams.get("lat"));
         // console.log(searchParams.get("lon"));
-    }, [sendRequest, setData, unitContext.isCelsius, lat, lon]);
+    }, [sendRequest, setData, context.isCelsius, lat, lon, language]);
 
 
     return(
         <div>
             {isLoading && <LoadingSpinner/>}
-            {!isLoading && error && <p>An error ocurred! ({error})</p>}
+            {!isLoading && error && <p>{errorMessage} ({error})</p>}
             {!isLoading && !error && weatherData &&
                 <div>
                     <div className={classes.location}>{weatherData.name.toUpperCase()}</div>
@@ -107,7 +124,7 @@ function WeatherDisplaySingle(){
                             <span>{Math.round(weatherData.main.temp)}°</span>
                         </div>
                         <div className={classes.temp_icon}>
-                            <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="Ícone referente ao clima atual"/>
+                            <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt={iconAlt}/>
                         </div>
                     </div>
                     <div className={classes.temp_max_min}>

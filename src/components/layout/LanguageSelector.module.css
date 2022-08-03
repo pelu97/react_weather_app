@@ -1,0 +1,12 @@
+.selector{
+    margin: auto;
+}
+
+.selector img{
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.selector p{
+    font-size: 14px;
+}

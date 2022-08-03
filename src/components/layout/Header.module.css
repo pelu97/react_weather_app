@@ -48,3 +48,27 @@
     height: 40px;
 }
 */
+
+/* telas menores */
+@media only screen and (max-width: 800px){
+    .spacer{
+        width: 70vw;
+    }
+}
+
+@media only screen and (max-width: 700px){
+    .spacer{
+        width: 65vw;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    .spacer{
+        width: 55vw;
+    }
+
+    .header{
+        height: 10vh;
+        margin-bottom: 5vh;
+    }
+}

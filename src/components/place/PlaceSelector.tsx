@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { MAPS_API_KEY } from "../../api_keys/api_keys";
@@ -65,13 +65,13 @@ function PlaceSelector(){
     }
 
     // useEffect only to log place predictions
-    useEffect(() => {
-        console.log(placePredictions);
-    }, [placePredictions]);
+    // useEffect(() => {
+    //     console.log(placePredictions);
+    // }, [placePredictions]);
 
     // Executa quando um lugar é selecionado na lista. Busca as coordenadas desse lugar
     function selectPlaceHandler(place: {description: string, placeId: string}){
-        console.log(place.description);
+        // console.log(place.description);
 
         placesService.getDetails({
             placeId: place.placeId,
@@ -92,7 +92,7 @@ function PlaceSelector(){
 
     // Abre a página do tempo, no modo de tempo atual, passando as coordenadas do local pela url
     function openWeatherPage(coords: {lat: number, lon: number}){
-        console.log(coords);
+        // console.log(coords);
 
         // Navigates to weather page with latitude and longitude of the selected location
         navigate(`weather/single?lat=${coords.lat}&lon=${coords.lon}`);

@@ -1,8 +1,8 @@
-import { createContext, ReactNode, useState, useEffect } from "react";
+import { createContext, ReactNode, useState } from "react";
 
 
 // Context usado para armazenar a unidade de temperatura e o idioma selecionado;
-// Facilita o uso e a alteração dessa informação, sem precisar passar como parâmetro para todo componente que precise dela
+// Facilita o uso e a alteração dessas informações, sem precisar passar como parâmetro para todo componente que precise delas
 
 
 
@@ -30,9 +30,9 @@ export function UnitContextProvider(props: UnitContextProviderProps){
     const [languageSelected, setLanguageSelected] = useState("ptbr");
 
     // useEffect just for logging the unit state after changing it
-    useEffect(() => {
-        console.log(isCelsius);
-    }, [isCelsius]);
+    // useEffect(() => {
+    //     console.log(isCelsius);
+    // }, [isCelsius]);
 
     function toggleUnitHandler(){
         setIsCelsius((prevState) => {

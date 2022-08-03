@@ -1,5 +1,6 @@
 import { useEffect, useCallback, useState, useContext } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
 // import { DUMMY_WEATHER_SINGLE } from "./DUMMY_WEATHER";
 
 import { useHttp } from "../../hooks/useHttp";
@@ -60,35 +61,46 @@ interface WeatherSingleData{
 }
 
 
+interface WeatherDisplaySingleProps{
+    lat: string | null,
+    lon: string | null
+}
+
 // Busca usando a Current Weather API e exibe o clima atual nas coordenadas selecionadas
-function WeatherDisplaySingle(){
+function WeatherDisplaySingle(props: WeatherDisplaySingleProps){
     const {isLoading, error, sendRequest} = useHttp();
     const [weatherData, setWeatherData] = useState<WeatherSingleData>();
     const context = useContext(UnitContext);
-    const [searchParams] = useSearchParams();
+    // const [searchParams] = useSearchParams();
+    //
+    // const lat = searchParams.get("lat");
+    // const lon = searchParams.get("lon");
 
-    const lat = searchParams.get("lat");
-    const lon = searchParams.get("lon");
-
+    // Escolhe os textos com base no idioma selecionado
     let language = "pt_br";
     let iconAlt = "Ícone referente ao clima atual";
+    let linkText = "Ver previsão para os próximos 5 dias";
     let errorMessage = "Ocorreu um erro ao buscar os dados do clima! Espere um pouco e tente novamente.";
 
     if(context.languageSelected === "ptbr"){
         language = "pt_br";
         iconAlt = "Ícone referente ao clima atual";
+        linkText = "Ver previsão para os próximos 5 dias";
         errorMessage = "Ocorreu um erro ao buscar os dados do clima! Espere um pouco e tente novamente.";
     }
     else if(context.languageSelected === "en"){
         language = "en";
         iconAlt = "Current weather's icon";
+        linkText = "See forecast for the next 5 days";
         errorMessage = "An error ocurred when fetching weather data! Please wait a few minutes and try again.";
     }
     else if(context.languageSelected === "esp"){
         language = "sp";
         iconAlt = "Icono del tiempo actual";
+        linkText = "Ver pronóstico para los próximos 5 días";
         errorMessage = "¡Se produjo un error al obtener los datos meteorológicos! Espere un momento y vuelva a intentarlo.";
     }
+
 
     const setData = useCallback((data: WeatherSingleData) => {
         // console.log(data);
@@ -96,17 +108,22 @@ function WeatherDisplaySingle(){
         setWeatherData(data);
     }, []);
 
+    // Realiza a requisição para a Current Weather API do Open Weather
     useEffect(() => {
         sendRequest<WeatherSingleData>({
             url: context.isCelsius
-            ? `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=${language}&appid=${WEATHER_API_KEY}`
-            : `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&lang=${language}&appid=${WEATHER_API_KEY}`
+            ? `https://api.openweathermap.org/data/2.5/weather?lat=${props.lat}&lon=${props.lon}&units=metric&lang=${language}&appid=${WEATHER_API_KEY}`
+            : `https://api.openweathermap.org/data/2.5/weather?lat=${props.lat}&lon=${props.lon}&units=imperial&lang=${language}&appid=${WEATHER_API_KEY}`
         }, setData);
         // console.log("Send request");
         // console.log(searchParams.get("lat"));
         // console.log(searchParams.get("lon"));
-    }, [sendRequest, setData, context.isCelsius, lat, lon, language]);
+    }, [sendRequest, setData, context.isCelsius, props.lat, props.lon, language]);
 
+    // As temperaturas máxima e mínima retornadas pela Current Weather API não são a máxima e mínima do dia e sim uma máxima e mínima da temperatura medida naquele momento.
+    // Para obter a máxima e mínima do dia, seria necessário acesso a uma API com dados do dia, mas são pagas, ou compilar utilizando as temperaturas retornadas
+    //   pela 5 Day / 3 Hour Forecast API, mas ela não retorna medidas passadas. Para o escopo dessa aplicação, acredito que essas temperaturas retornadas pela
+    //   Current Weather API são suficientes.
 
     return(
         <div>
@@ -135,6 +152,7 @@ function WeatherDisplaySingle(){
                             <span>MIN:</span>  {Math.round(weatherData.main.temp_min)}°
                         </div>
                     </div>
+                    <Link className={classes.link} to={`/weather/multi?lat=${props.lat}&lon=${props.lon}`}>{linkText}</Link>
                 </div>
             }
         </div>

@@ -1,0 +1,182 @@
+.list ul {
+    list-style: none;
+    margin: 0;
+    /* margin-left: 0; */
+    padding: 0;
+    /* border-radius: 0px 0px 10px 10px; */
+    /* box-shadow: 0px 4px 4px rgba(106, 162, 209, 0.8); */
+    /* display: table; */
+    width: 100%;
+    text-align: center;
+}
+
+.item span{
+    /* margin: 10px; */
+}
+
+.item{
+    width: 100%;
+    text-align: left;
+    position: relative;
+}
+
+.day{
+    display: inline-block;
+    width: 150px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.icon{
+    height: 40px;
+    vertical-align: middle;
+    margin: 30px;
+    text-align: center;
+}
+
+.icon img{
+    width: 40px;
+}
+
+.line{
+    margin: 18px;
+}
+
+.line img{
+    vertical-align: middle;
+}
+
+.temp_min, .temp_max{
+    font-size: 16px;
+}
+
+.description{
+    font-size: 16px;
+    margin-left: 40px;
+}
+
+.location{
+    font-weight: 700;
+    font-size: 43px;
+    letter-spacing: 0.14em;
+    margin: 0;
+}
+
+.location_container{
+    margin-bottom: 70px;
+}
+
+.subtitle{
+    font-size: 20px;
+    margin: 0;
+}
+
+
+/* telas menores */
+@media only screen and (max-width: 750px){
+    .day{
+        width: 130px;
+        font-size: 18px;
+    }
+
+    .icon{
+        margin: 15px;
+    }
+
+    .line{
+        margin: 10px;
+    }
+
+    .temp_min, .temp_max{
+        font-size: 15px;
+    }
+
+    .description{
+        font-size: 15px;
+        margin-left: 30px;
+    }
+}
+
+@media only screen and (max-width: 620px){
+    .day{
+        width: 130px;
+        font-size: 15px;
+    }
+
+    .icon{
+        margin: 5px;
+    }
+
+    .line img{
+        width: 80px;
+    }
+
+    .temp_min, .temp_max{
+        font-size: 13px;
+    }
+
+    .description{
+        font-size: 13px;
+        margin-left: 12px;
+    }
+
+    .location{
+        font-size: 37px;
+    }
+
+    .subtitle{
+        font-size: 17px;
+    }
+
+}
+
+@media only screen and (max-width: 500px){
+    .day{
+        width: 80px;
+        font-size: 12px;
+    }
+
+    .icon{
+        margin: 8px;
+    }
+
+    .icon img{
+        width: 20px;
+    }
+
+
+    .line{
+        margin: 20px;
+    }
+
+    .line img{
+        height: 5px;
+        width: 100px;
+    }
+
+    .temp_min, .temp_max{
+        font-size: 12px;
+    }
+
+    .description{
+        display: none;
+    }
+
+    .location{
+        font-size: 29px;
+    }
+
+    .subtitle{
+        font-size: 14px;
+    }
+
+    .location_container{
+        margin-bottom: 15px;
+    }
+
+    .item{
+        margin-bottom: 12px;
+    }
+
+}

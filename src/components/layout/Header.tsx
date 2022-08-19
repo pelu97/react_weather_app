@@ -5,12 +5,12 @@ import UnitButton from "./UnitButton";
 import arrowImage from "../../assets/arrow.png";
 import classes from "./Header.module.css";
 
-// Cabeçalho. Contém o botão de voltar e o botão de selecionar a unidade de temperatura
+// Header - contains the back button and the temperature unit selector
 function Header(){
     const location = useLocation();
 
     // console.log(location);
-    // Exibe o botão de voltar apenas se já não estiver na tela principal
+    // Only shows the back button if not in the starting page
     const showBackButton = (location.pathname !== "/");
 
     return(

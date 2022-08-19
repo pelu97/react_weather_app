@@ -1,6 +1,9 @@
 import { useState, useCallback } from "react";
 
 
+// Custom hook to send the requests to the Open Weather API
+// The Google Maps Places API uses the react-google-autocomplete package and doesn't use this hook
+
 // Hook customizado para realizar as requisições para a API do OpenWeather
 // A Places API do Google Maps é utilizada por meio do pacote react-google-autcomplete e não utiliza esse hook
 

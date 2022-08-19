@@ -8,7 +8,7 @@ interface PlaceItemProps{
     className?: string
 }
 
-// Item da lista de locais no autocomplete
+// Autocomplete list of locations
 function PlaceItem(props: PlaceItemProps){
     return(
         <li className={`${props.className} ${classes.item}`} onClick={() => {

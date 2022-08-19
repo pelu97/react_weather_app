@@ -15,7 +15,7 @@ import classes from "./WeatherDisplayMulti.module.css";
 // https://api.openweathermap.org/data/2.5/forecast?lat=-15.793889&lon=-47.882778&cnt=5&appid=WEATHER_API_KEY
 
 
-// Função para formatar a string da data
+// Function to format the date string
 function getDateString(date: Date, language: string): string{
 
     let languageCode = "pt-BR";
@@ -53,6 +53,7 @@ function getDateString(date: Date, language: string): string{
 }
 
 
+// 5 Day Forecast API data format
 // Formato dos dados retornados pela API de previsão de 5 dias
 interface WeatherMultiData{
     cod: string,
@@ -112,6 +113,7 @@ interface WeatherDisplayMultiProps{
     lon: string | null
 }
 
+// Search using the 5 Day / 3 Hour FOrecast API and show the weather for the next 5 days in the coordinates selected
 // Busca usando a 5 Day / 3 Hour API e exibe o clima dos próximos 5 dias nas coordenadas selecionadas
 function WeatherDisplayMulti(props: WeatherDisplayMultiProps){
     const {isLoading, error, sendRequest} = useHttp();
@@ -129,6 +131,7 @@ function WeatherDisplayMulti(props: WeatherDisplayMultiProps){
 
     // console.log(weather);
 
+    // Select texts based on the selected language
     // Seleciona os textos com base no idioma selecionado
     let language = "pt_br";
     let iconAlt = "Ícone referente ao clima atual";
@@ -158,6 +161,7 @@ function WeatherDisplayMulti(props: WeatherDisplayMultiProps){
         errorMessage = "¡Se produjo un error al obtener los datos meteorológicos! Espere un momento y vuelva a intentarlo.";
     }
 
+    // Send request to the API
     // Realiza a requisição a 5 Day / 3 Hour API do Open Weather
     useEffect(() => {
         sendRequest<WeatherMultiData>({
@@ -175,6 +179,9 @@ function WeatherDisplayMulti(props: WeatherDisplayMultiProps){
         description: string,
         iconCode: string
     }[] = [];
+
+
+    // Group and process data because the API returns measurements with 3 hour intervals
 
     // Processa os dados pois a API retorna medidas de 3 em 3 horas para os próximos 5 dias
     // Agrupa as medidas de cada dia e extrai as informações necessárias
@@ -218,6 +225,9 @@ function WeatherDisplayMulti(props: WeatherDisplayMultiProps){
             let description = "";
             let iconCode = "";
 
+
+            // For the weather description, selects the description for the noon measurement, because the API doesn't return one for the day
+            //  only for each 3 hour measurement
 
             // Para a descrição (nublado, céu aberto, etc) do clima, tenta selecionar a medida do meio dia. Caso não exista, pega a última medida do dia.
             // Workaround necessário pois a API retorna medidas de 3 em 3 horas dos próximos 5 dias, e não retorna uma previsão diária

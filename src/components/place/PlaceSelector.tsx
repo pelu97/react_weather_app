@@ -12,6 +12,10 @@ import LoadingSpinner from "../ui/LoadingSpinner";
 
 import classes from "./PlaceSelector.module.css";
 
+// Place search and selector
+// Uses the usePlacesService from the react-google-autocomplete package to get the data from Google Maps Places API,
+//      with a delay to avoid sending too many requests and lower costs.
+// The search is biased towards Brazil's geographical coordinates.
 
 // Buscador e seletor de lugares (limitados para cidades)
 // Utiliza o hook usePlacesService do pacote react-google-autocomplete para buscar os dados da Places API do Google Maps,

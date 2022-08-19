@@ -1,6 +1,8 @@
 import { createContext, ReactNode, useState } from "react";
 
 
+// Context used to store the temperature unit and the language selected.
+
 // Context usado para armazenar a unidade de temperatura e o idioma selecionado;
 // Facilita o uso e a alteração dessas informações, sem precisar passar como parâmetro para todo componente que precise delas
 

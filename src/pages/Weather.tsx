@@ -8,7 +8,7 @@ import WeatherDisplayMulti from "../components/weather/WeatherDisplayMulti";
 
 import classes from "./Weather.module.css";
 
-
+// Page with the weather components
 // Página com os componentes de exibição do clima
 function Weather(){
     const params = useParams();
@@ -21,6 +21,7 @@ function Weather(){
 
     // console.log(lat, lon);
 
+    // Checks which weather component should be shown, the current weather or the 5 day weather
     // Verifica se deve exibir o componente de clima do dia atual ou o de clima dos próximos 5 dias
     let multiMode;
 
@@ -31,7 +32,7 @@ function Weather(){
         multiMode = false;
     }
 
-
+    // In case any parameter is missing, shows an error message
     // Caso algum dos parâmetros estejam faltando, exibe uma mensagem de erro
     let badUrlMessage = "Ocorreu um problema com a URL. Verifique se ela não foi alterada.";
 

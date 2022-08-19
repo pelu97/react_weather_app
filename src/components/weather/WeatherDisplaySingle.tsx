@@ -14,6 +14,8 @@ import classes from "./WeatherDisplaySingle.module.css";
 
 // https://api.openweathermap.org/data/2.5/weather?lat=-15.793889&lon=-47.882778&appid=WEATHER_API_KEY
 
+
+// Open Weather Current Weather API data format
 // Formato dos dados retornados pela Current Weather API do Open Weather
 interface WeatherSingleData{
     coord: {
@@ -66,6 +68,7 @@ interface WeatherDisplaySingleProps{
     lon: string | null
 }
 
+// Search using the Current Weather API and shows the current weather in the selected coordinates
 // Busca usando a Current Weather API e exibe o clima atual nas coordenadas selecionadas
 function WeatherDisplaySingle(props: WeatherDisplaySingleProps){
     const {isLoading, error, sendRequest} = useHttp();
@@ -76,6 +79,7 @@ function WeatherDisplaySingle(props: WeatherDisplaySingleProps){
     // const lat = searchParams.get("lat");
     // const lon = searchParams.get("lon");
 
+    // Choose the text based on the selected language
     // Escolhe os textos com base no idioma selecionado
     let language = "pt_br";
     let iconAlt = "Ícone referente ao clima atual";
@@ -108,6 +112,7 @@ function WeatherDisplaySingle(props: WeatherDisplaySingleProps){
         setWeatherData(data);
     }, []);
 
+    // Sends the request to the Current Weather API
     // Realiza a requisição para a Current Weather API do Open Weather
     useEffect(() => {
         sendRequest<WeatherSingleData>({
@@ -119,6 +124,9 @@ function WeatherDisplaySingle(props: WeatherDisplaySingleProps){
         // console.log(searchParams.get("lat"));
         // console.log(searchParams.get("lon"));
     }, [sendRequest, setData, context.isCelsius, props.lat, props.lon, language]);
+
+    // Maximum and minimum temperatures returned by the API are not the maximum and minimum of the day, but just a variation
+    //  of the current measurement. For this application, these should be enough. Also, its the free API.
 
     // As temperaturas máxima e mínima retornadas pela Current Weather API não são a máxima e mínima do dia e sim uma máxima e mínima da temperatura medida naquele momento.
     // Para obter a máxima e mínima do dia, seria necessário acesso a uma API com dados do dia, mas são pagas, ou compilar utilizando as temperaturas retornadas

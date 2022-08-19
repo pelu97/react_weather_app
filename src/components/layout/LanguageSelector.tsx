@@ -8,7 +8,7 @@ import spaFlag from "../../assets/spain.png";
 
 import classes from "./LanguageSelector.module.css";
 
-// Seletor de idioma
+// Language selector
 
 function LanguageSelector(){
     const context = useContext(UnitContext);

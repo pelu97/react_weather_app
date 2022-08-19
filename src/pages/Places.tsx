@@ -6,7 +6,7 @@ import PlaceSelector from "../components/place/PlaceSelector";
 
 import classes from "./Places.module.css";
 
-
+// Page with the city search
 // Página com a busca de cidades
 
 function Places(){

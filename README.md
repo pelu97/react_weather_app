@@ -5,7 +5,7 @@ Its also a Single Page Application using React Router DOM.
 
 ![Main Screen Image](images/main_screen.png?raw=true)
 
-It uses the Google Maps API to present a location search bar with Autocomplete, set to search for cities and biased towards Brazil's geographical coordinates.
+It uses the Google Maps API to present a location search bar with Autocomplete, set to search for cities and biased towards Brazil's geographical coordinates. To use the Maps API, the react-google-autocomplete packages was used.
 The OpenWeather free API is used to fetch the weather data. There are a few workarounds due to limitations to the data returned by the free API. For acuraccy, one of the paid ones would complete the rest of the data that is presented, but for demonstration purposes the free one is definitely enough (and free).
 
 
